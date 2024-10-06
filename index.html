@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Mobile Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Calculator</h1>
+        <input type="text" id="display" placeholder="0" disabled>
+        <div class="buttons">
+            <button onclick="clearDisplay()" class="circular-button">C</button>
+            <button onclick="appendToDisplay('/')" class="circular-button">÷</button>
+            <button onclick="appendToDisplay('*')" class="circular-button">×</button>
+            <button onclick="appendToDisplay('-')" class="circular-button">-</button>
+
+            <button onclick="appendToDisplay('7')" class="circular-button">7</button>
+            <button onclick="appendToDisplay('8')" class="circular-button">8</button>
+            <button onclick="appendToDisplay('9')" class="circular-button">9</button>
+            <button onclick="appendToDisplay('+')" class="circular-button">+</button>
+
+            <button onclick="appendToDisplay('4')" class="circular-button">4</button>
+            <button onclick="appendToDisplay('5')" class="circular-button">5</button>
+            <button onclick="appendToDisplay('6')" class="circular-button">6</button>
+            <button onclick="calculate()" class="circular-button">=</button>
+
+            <button onclick="appendToDisplay('1')" class="circular-button">1</button>
+            <button onclick="appendToDisplay('2')" class="circular-button">2</button>
+            <button onclick="appendToDisplay('3')" class="circular-button">3</button>
+            <button onclick="appendToDisplay('0')" class="circular-button">0</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            const display = document.getElementById("display");
+            if (display.value === "0" || display.value === "") {
+                display.value = value;
+            } else {
+                display.value += value;
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function calculate() {
+            const display = document.getElementById("display");
+            try {
+                display.value = eval(display.value.replace('×', '*').replace('÷', '/'));
+            } catch (e) {
+                display.value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
